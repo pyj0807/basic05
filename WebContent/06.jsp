@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	String str ="var test =function(){\n";
-	str += "    console.log(true);\n";
-//	str +="};";
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +14,13 @@
 	</p>
 	<script src="<%=application.getContextPath()%>/js/default.js"></script>
 	<script>
-		<%=str%>
-		};
-		test();
-		var t = new Array();
+
+	/* 	var t = new Array();
 		console.log(t.length);
 		t[t.length] = 93;
 		t[t.length] = 13;
-		t[t.length] = 131;
+		t[t.length] = 131; */
+		
 		var s = new Sphere(121);
 		var p = s.volume();
 		console.log(p);
