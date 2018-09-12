@@ -20,6 +20,17 @@
 	</p>
 	<script>
 		var set = function(a) {
+			/*if(a.length<=4){
+			document.getElementsByTagName("input")[0].value=a;		
+		}else{
+			var name =a.split(",");
+			var ret = new Array();
+			for(var i=0;i<4;i++){
+				 ret[ret.length]=name[i];
+			}
+			document.getElementsByTagName("input")[0].value=ret;
+		}*/
+
 			var v = a.value;
 			var ar = v.split(",");
 			if(ar.length>4){

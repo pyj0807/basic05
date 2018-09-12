@@ -22,6 +22,7 @@
 		당신의 현재선택 : <span></span>
 	</p>
 	<script>
+	var names = new Array();
 		var save = function(target){
 			console.log(target.value);
 			console.log(target.checked);
