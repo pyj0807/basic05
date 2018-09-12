@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	String[] ar = "루피,조로,나미,상디,우솝,쵸파,프랑키,브룩,로빈".split(",");
 %>
@@ -14,21 +14,33 @@
 	<small>당신의 최애캐를 선택해주세요. (중복선택가능/최대3개까지)</small>
 	<p>
 		<%for(int i=0; i<ar.length; i++){ %>
-			<input type="checkbox" value="<%=ar[i]%>" onchange="save(this)"/><%=ar[i] %>
+		<input type="checkbox" value="<%=ar[i]%>" onchange="save(this)" /><%=ar[i] %>
 		<%} %>
 	</p>
-	<hr/>
+	<hr />
 	<p>
 		당신의 현재선택 : <span></span>
 	</p>
 	<script>
-	var names = new Array();
-		var save = function(target){
+
+		var names = new Array();
+		
+		var save = function(target) {
+			var inputs = document.getElementsByTagName("input");
+			var v = target.value;
+			var pr = 0;
 			console.log(target.value);
 			console.log(target.checked);
-			if(target.value=="루피"){
-				target.checked = false;
+			for (var i = 0; i < inputs.length; i++) {
+				if (inputs[i].checked == true) {
+					pr += parseInt(inputs[i].value);
+					document.getElementsByTagName("span")[0].innerHTML = pr;
+				}
 			}
+			/* 	if (target.value == "루피") {
+					target.checked = false;
+
+				} */
 		}
 	</script>
 </body>

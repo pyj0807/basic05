@@ -20,7 +20,7 @@
 		console.log(ar.length+"/"+ar2.length);
 		// 접근하는 방식은 똑같음. [idx]로 접근
 		console.log(ar2[ar2.length-1]);
-		console.log(ar[13]);	// djqtsms idx는 undefined
+		console.log(ar[13]);	// 없는 idx는 undefined
 		// 순환처리하는건, for로 돌려서 처리하면 됨
 		// 데이터를 추가하는건 length 를 index 로 설정해서 값 설정
 		ar2[ar2.length]= 45;
