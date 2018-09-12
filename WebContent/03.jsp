@@ -4,42 +4,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자바스크립트</title>
+<title>java script</title>
 </head>
 <body>
-	<h2 onmouseover="console.log('over event');">자바스크립트의 function</h2>
+	<h1>string 객체</h1>
 	<p>
-		function 은 일반적으로 함수를 만들어내는데 사용되고, 객체를 설계할때도 사용된다.
+		자바스크립트의 string 역시, 객체형 데이트이고 조작함수들이 존재한다.
 	</p>
-	<p>
-		함수를 만들때의 function 이던, 객체를 만들때의 function 이던 두가지형태로 설계가능하다.
-		<small>설계된 function은 script에서 사용되게나 HTML에서 event로 작동됨</small>
-	</p>
-	<p>
-		<textarea style="width:400px; resize: none;" onclick="move();" readonly></textarea>
-	</p>
+	<input type="text" placeholder="input text" onchange="search(this.type, this.value);"/>
+	<input type="checkbox" placeholder="free" onchange="search(this.type, this.value);"/>
 	<script>
-	var num = 5;
-	/*
-		function move() {
-			var b = window.confirm("댓글을 다시려면 로그인이 필요합니다.");
-			if(b){
-				location.assign("index.jsp");
-			}
-		}
-	*/
-	var move = function(){
-		var b = window.confirm("댓글을 다시려면 로그인이 필요합니다.");
-		if(b){
-			location.assign("index.jsp");
-		}
+		console.log(document.getElementsByTagName("input")[0].onchange);
 		
-	};
-	// 자바스크립트는 함수도 변수로 담아서 관리를 하게 된다.
-	console.log(typeof move);
-	console.log(move);	// 함수의 내용이 출력
-	move();	// 함구를 담고있는 변수를 ();로 call 하는 거임.
+		function search(type, val){
+		//	console.log("type =" + type +"/"+typeof type);
+		//	console.log("val =" + val +"/"+typeof val);
+			// length : 길이 , function 이 아님
+			console.log(val.length);
+			// 0. 문자열비교 = 로 처리
+			//console.log(vla.length());
+			// javascript string 의 메소드는 자바 String이랑 거의 비슷
+			// 1. charAt()	==> string
+			console.log(val.charAt(0)+"/"+typeof val.charAt(0));
+			// 2. charCodeAt(idx) ==> number
+			console.log(val.charCodeAt(0)+"/"+ typeof val.charAt(0));
+			// 3. startsWith , endsWith	==> boolean
+			// 4. indexOf, lastIndexOf ==> number
+			console.log(val.indexOf("admin")+"/"+ typeof val.includes("damin"));
+			// 5. toUpperCase(), toLowerCase()   타이틀을 대,소문자로 변경 , trim() ==> String  trimdms 좌우 공백 제거
+			document.title ="["+ val.trim().toUpperCase() + "]";
+			// 6. replace() ==> string
+			console.log(val.replace("<", "&lt;"));			// <문자를 &lt 로 변경해서 나옴
+			// 7. substr(), substring, slice ==> string
+							// lenhth 혹은, 끝 index 설정항낳면 마지막까지 다 처리함
+			console.log(val.substr(3, 2));			// from Index, length Index
+			console.log(val.substring(3, 5));			// from Index, end Index
+			console.log(val.slice(3, 5));		// from Index, end Index
+			console.log(val.substring(3, 5));			// from Index, end Index
+			
+			var ar = "saan;mockig;te0506".split(";");
+			console.log(ar.length);
+			for(var i=0; i<ar.length; i++){
+				console.log(ar[i]);
+			}
+			
+		}
 	</script>
-	
 </body>
 </html>
