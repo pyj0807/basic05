@@ -25,8 +25,9 @@
 			(*)비밀번호 : <input type="password" onchange="ckpass(this);" id="pass" /><span></span>
 		</p>
 		<p>
-			(*)비밀번호 재확인 : <input type="password" onkeyup="ckrepass(this);"
-				id="repass" /><span></span>
+			(*)비밀번호 재확인 : <input type="password" onkeyup="ckrepass(this);" id="repass" /><span></span>
+		</p>
+		<p>
 		</p>
 		<button type="submit" id="sbt" disabled>신청서</button>		
 	</form>
@@ -45,8 +46,8 @@
 		}
 		//===========================================
 		var ckid = function(a) {
-			var c = a.value;
-			var check = /^[A-Za-z]\w{3,11}$/.test(c);
+			var v1 = a.value;
+			var check = /^[A-Za-z]\w{3,11}$/.test(v1);
 			ar[0] = check;
 			if (check) {
 				document.getElementsByTagName("span")[0].innerHTML = "유효.(서버측으로부터 사용가능 체크중)";
@@ -56,10 +57,78 @@
 			vaild();
 		}
 		
-		var  chnick = function(b){
-			var v = b.value;
-			var check = /^[가-힇]{2,7}&/.test(v);
+		var  cknick = function(b){
+			var v2 = b.value;
+			var check = /^[가-힇]{2,7}$/.test(v2);
+			ar[1] = check;
+			if(check){
+				document.getElementsByTagName("span")[1].innerHTML = "유효.(서버측으로부터 사용가능 체크중)";
+			}else{
+				document.getElementsByTagName("span")[1].innerHTML = "유효하지 않음.";
+			}
+			vaild();
 		}
+		
+		var ckpass = function(c){
+			var v3 = c.value;
+			var check = /^\w{3,11}$/.test(v3);
+			ar[2] = check;
+			if(check){
+				document.getElementsByTagName("span")[2].innerHTML = "사용가능";
+			}else{
+				document.getElementsByTagName("span")[2].innerHTML = "유효하지 않음.";
+			}
+			vaild();
+		}
+		
+		var ckrepass = function(d){
+			var v4 = d.value;
+			var c = document.getElementsByTagName("input")[2].value;
+			if(v4 == c){
+				document.getElementsByTagName("span")[3].innerHTML = "일치합니다";
+			}else{
+				document.getElementsByTagName("span")[3].innerHTML = "유효하지 않음.";
+			}
+			vaild();
+		}
+		
+		
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
