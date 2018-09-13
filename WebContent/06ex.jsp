@@ -14,15 +14,15 @@
 		2. 닉네임은 한글로 구성된 3~8자 (공백,특수문자불가능)<br />
 		3. 비밀번호는 4~12자 로 일치시켜서 두번 입력 <br />
 	</p>
-	<form>
+	<form action="<%=application.getContextPath()%>/join.jsp">
 		<p>
-			(*)아이디 : <input type="text" onkeyup="ckid(this);" id="id" /><span></span>
+			(*)아이디 : <input type="text" onkeyup="ckid(this);" name="joinid" id="id" /><span></span>
 		</p>
 		<p>
 			(*)닉네임 : <input type="text" onkeyup="cknick(this);" id="nick" /><span></span>
 		</p>
 		<p>
-			(*)비밀번호 : <input type="password" onchange="ckpass(this);" id="pass" /><span></span>
+			(*)비밀번호 : <input type="password" onchange="ckpass(this);" name="joinpass" id="pass" /><span></span>
 		</p>
 		<p>
 			(*)비밀번호 재확인 : <input type="password" onkeyup="ckrepass(this);" id="repass" /><span></span>
@@ -39,9 +39,9 @@
 		var vaild = function() {
 			console.log(ar);
 			if (ar.includes(false)) {
-				document.getElementById("sbt").disabled = true;
-			} else {
 				document.getElementById("sbt").disabled = false;
+			} else {
+				document.getElementById("sbt").disabled = true;
 			}
 		}
 		//===========================================
