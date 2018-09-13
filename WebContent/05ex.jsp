@@ -33,6 +33,46 @@
 		</p>
 	</form>
 	<script>
+
+	
+	var setting = function(r) {
+		// var endInput = document.getElementsByTagName("input")[1];	
+		var endInput = document.getElementById("end");	// id를 바로 확보가능하다, 유니크 처리해야 함.
+		console.log(endInput.value);
+		var d = new Date(endInput.value);
+		var td = d.getTime() - (1000*60*60*24*r);
+		var tdd = new Date(td);
+		console.log(tdd);
+		var day = 0;
+		//==
+			var month = "0" + (tdd.getMonth() + 1);
+			if (tdd.getDate() / 10 < 1) {
+				day = "0" + (tdd.getDate());
+			} else {
+				day = tdd.getDate();
+			}
+			var year = tdd.getFullYear();
+
+			var hap = year + "-" + month + "-" + day;
+			console.log(hap);
+		//==
+		// var startInput = document.getElementsByTagName("input")[0];	
+		var startInput = document.getElementById("start");
+		
+		//==
+			document.getElementById("start").value = hap;
+
+			var t = new Date(document.getElementById("start").value);
+			var tt = new Date(t.value);
+			console.log(tt.getTime());
+			console.log(time.getTime());
+			
+		//==
+		
+		document.getElementsByTagName("button")[3].disabled = false;
+	};
+	
+	
 	var valid = function(t) {
 		var d1 = new Date(t.value);
 		var d2 = new Date(document.getElementById("end").value);	// i
@@ -43,21 +83,6 @@
 			document.getElementById("result").innerHTML = "";
 		}
 	}
-	
-	var setting = function(r) {
-		// var endInput = document.getElementsByTagName("input")[1];	
-		var endInput = document.getElementById("end");	// id를 바로 확보가능하다, 유니크 처리해야 함.
-		console.log(endInput.value);
-		var d = new Date(endInput.value);
-		var td = d.getTime() - (1000*60*60*24*r);
-		var tdd = new Date(td);
-		console.log(tdd);
-		// var startInput = document.getElementsByTagName("input")[0];	
-		var startInput = document.getElementById("start");
-		startInput.value= "2018-01-01";
-		document.getElementsByTagName("button")[3].disabled = false;
-	};
-	
 	
 	
 	/*

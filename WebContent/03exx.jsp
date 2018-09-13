@@ -53,6 +53,7 @@
 					t.value = str.substr(0,3)+"-"+str.substr(3);
 				}else {
 					t.value = str.substr(0,3)+"-"+str.substr(3,4)+"-"+ str.substr(7);
+					 str.splice(7,1);
 				}
 			}
 		 
