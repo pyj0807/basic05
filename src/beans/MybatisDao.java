@@ -23,7 +23,7 @@ public class MybatisDao {
 		SqlSession sql = factory.openSession();
 		try {
 			
-			int r = sql.insert("ac.addData", param);
+			int r = sql.insert("join.addData", param);
 			if(r==1) 
 				sql.commit();
 			

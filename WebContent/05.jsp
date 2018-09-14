@@ -4,57 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Javascript</title>
+<title>자바스크립트</title>
 </head>
 <body>
-	<small></small>
-	<h1>자바스크립트</h1>
+	<h1>AJAX</h1>
 	<p>
-		자바스크립트에서 날짜관련 작업을 하는데 사용되는 Date 객체에 대해서 살펴보고
-		활용해보자.
+		open api 에서 서울시 인구 구별 통계를 ajax로 긁어 와서 html를 만들어보자<br/>
+		주소는 http://data.seoul.go.kr/dataList/datasetView.do?infId=419&srvType=S&serviceKind=2&currentPageNo=1
 	</p>
+	<button type="button" onclick="scrap();">데이터가져오기</button>
+	<h3>데이터 읽어온 값</h3>
+	<ul id="rst">
+	
+	</ul>
 	<script>
-		var disp = function(){
-			var str = new Date().toTimeString().split(" ")[0];
-			document.getElementsByTagName("small")[0].innerHTML = str;
-		}
+		var scrap = function(){
+			var req = new XMLHttpRequest();
+			req.open("get", "http://openapi.seoul.go.kr:8088/sample/xml/octastatapi419/1/5/", true);
+			
+			var html = "<li>종로구 / 남자 79322명 , 여자 82600명</li>";
+			
+			document.getElementById("rst").innerHTML = html;
+			
+			req.onreadystatechange = function(){
+				if(this.readyState==4){
+					var resp = this.responseXML;
+					var row = resp.getElementsByTagName("row")
+				}
+			}
+			
+		};
 	
-	
-		window.setInterval(disp(), 1000);
-		window.setInterval(disp, 1000);
-	
-		var n = new Date();	// 현재시간으로 만들어짐
-		console.log(n);
-		var nn = new Date(1536802507931);
-		console.log(nn);
-		var nnn = new Date("2018-09-12 23:11:20");	// dateformat에 맞는 문자열 가지고도 만들수 있음
-		console.log(nnn);
-		var m = new Date(2018,9,12,23,11,20);	// 월데이터는 0부터 설정
-		console.log(m);
-		
-		var t = n.getTime();
-		console.log(t);		// 이 Date객체가 가진 경과시간 (ms)
-		console.log(n.getFullYear());	// 년도
-		console.log(n.getYear());	// 년도
-		console.log(n.getMonth());	// 월 0 ~ 11
-		console.log(n.getDate());	// 날짜 1 ~ 31
-		console.log(n.getDay());	// 요일 0 ~ 6
-		console.log(n.getHours());	// 시간 0 ~ 23
-		console.log(n.getMinutes());	// 분 0 ~ 59
-		console.log(n.getSeconds());	// 초 0 ~ 59
-		console.log(n.toString());
-		console.log(n.toDateString());
-		console.log(n.toTimeString());
-		//================================================================
-		
-		console.log(n.toLocaleDateString());
-		console.log(n.toLocaleTimeString());
-		
-		console.log(n.toUTCString());
-		
-		console.log(n.toTimeString().split(" ")[0]);
-		
-		
 	</script>
 </body>
 </html>

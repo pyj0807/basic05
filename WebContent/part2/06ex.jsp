@@ -14,7 +14,7 @@
 		2. 닉네임은 한글로 구성된 3~8자 (공백,특수문자불가능)<br />
 		3. 비밀번호는 4~12자 로 일치시켜서 두번 입력 <br />
 	</p>
-	<form action="<%=application.getContextPath()%>/join.jsp">
+	<form action="<%=application.getContextPath()%>/part2/join.jsp">
 		<p>
 			(*)아이디 : <input type="text" onkeyup="ckid(this);" name="joinid" id="id" /><span></span>
 		</p>
@@ -62,9 +62,12 @@
 			var check = /^[가-힇]{2,7}$/.test(v2);
 			ar[1] = check;
 			if(check){
-				document.getElementsByTagName("span")[1].innerHTML = "유효.(서버측으로부터 사용가능 체크중)";
+				document.getElementsByTagName("span")[1].innerHTML = "사용가능합니다";
+				document.getElementsByTagName("span")[1].style.color = "green";
+				
 			}else{
-				document.getElementsByTagName("span")[1].innerHTML = "유효하지 않음.";
+				document.getElementsByTagName("span")[1].innerHTML = "한글로 구성된 3~8자";
+				document.getElementsByTagName("span")[1].style.color = "red";
 			}
 			vaild();
 		}
@@ -75,8 +78,10 @@
 			ar[2] = check;
 			if(check){
 				document.getElementsByTagName("span")[2].innerHTML = "사용가능";
+				document.getElementsByTagName("span")[2].style.color = "green";
 			}else{
 				document.getElementsByTagName("span")[2].innerHTML = "유효하지 않음.";
+				document.getElementsByTagName("span")[2].style.color = "red";
 			}
 			vaild();
 		}
@@ -86,8 +91,10 @@
 			var c = document.getElementsByTagName("input")[2].value;
 			if(v4 == c){
 				document.getElementsByTagName("span")[3].innerHTML = "일치합니다";
+				document.getElementsByTagName("span")[3].style.color = "green";
 			}else{
 				document.getElementsByTagName("span")[3].innerHTML = "유효하지 않음.";
+				document.getElementsByTagName("span")[3].style.color = "red";
 			}
 			vaild();
 		}

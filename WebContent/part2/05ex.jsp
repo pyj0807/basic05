@@ -45,7 +45,15 @@
 		console.log(tdd);
 		var day = 0;
 		//==
-			var month = "0" + (tdd.getMonth() + 1);
+		var startInput = document.getElementById("start");
+			
+		//var month = tdd.getFullYear()+ "-" + (tdd.getMonth() + 1 ? "" : "0");
+		var set = tdd.getFullYear()+ "-" + (tdd.getMonth() + 1 ? "" : "0");
+			set += (tdd.getDate > 10? "":"0") + tdd.getDate();
+		startInput.value = set;
+		document.getElementsByTagName("button")[3].disabled = false;
+		
+		/* 		
 			if (tdd.getDate() / 10 < 1) {
 				day = "0" + (tdd.getDate());
 			} else {
@@ -55,6 +63,7 @@
 
 			var hap = year + "-" + month + "-" + day;
 			console.log(hap);
+			 */
 		//==
 		// var startInput = document.getElementsByTagName("input")[0];	
 		var startInput = document.getElementById("start");

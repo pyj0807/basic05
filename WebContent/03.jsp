@@ -1,53 +1,139 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>java script</title>
+<title>Ajax 연습</title>
 </head>
 <body>
-	<h1>string 객체</h1>
-	<p>
-		자바스크립트의 string 역시, 객체형 데이트이고 조작함수들이 존재한다.
-	</p>
-	<input type="text" placeholder="input text" onchange="search(this.type, this.value);"/>
-	<input type="checkbox" placeholder="free" onchange="search(this.type, this.value);"/>
+	<h1>가입신청서</h1>
+	<small>아래 양식에 맞춰 값을 설정</small>
+	<ul>
+		아래 제공되는 양식에 데이터를 설정 후 가입 신청 바랍니다.
+		<br />
+		<li>1. 아이디는 영문숫자기반의 4~12자(공백,특수문자불가능/ 첫글자는 영문으로)<br />
+		<li>2. 닉네임은 한글로 구성된 3~8자 (공백,특수문자불가능)<br />
+		<li>3. 비밀번호는 4~12자 로 일치시켜서 두번 입력 <br />
+	</ul>
+	<form action="">
+		<p>
+			<b>(*)Account ID</b> <input type="text" id="id" /><span></span>
+		</p>
+
+		<p>
+			<b>(*)NickName</b> <input type="text" onkeyup="ckNick(this);"
+				id="nick" /><span></span>
+		</p>
+		<p>
+			<b>(*)PassWord</b> <input type="password" onchange="ckPass(this);"
+				name="joinpass" id="pass" /><span></span>
+		</p>
+		<p>
+			<b>(*)PassWordCheck</b> <input type="password"
+				onkeyup="ckRepass(this);" id="repass" /><span></span>
+		</p>
+		<button type="submit" id="sbt" disabled>신청서</button>
+	</form>
 	<script>
-		console.log(document.getElementsByTagName("input")[0].onchange);
-		
-		function search(type, val){
-		//	console.log("type =" + type +"/"+typeof type);
-		//	console.log("val =" + val +"/"+typeof val);
-			// length : 길이 , function 이 아님
-			console.log(val.length);
-			// 0. 문자열비교 = 로 처리
-			//console.log(vla.length());
-			// javascript string 의 메소드는 자바 String이랑 거의 비슷
-			// 1. charAt()	==> string
-			console.log(val.charAt(0)+"/"+typeof val.charAt(0));
-			// 2. charCodeAt(idx) ==> number
-			console.log(val.charCodeAt(0)+"/"+ typeof val.charAt(0));
-			// 3. startsWith , endsWith	==> boolean
-			// 4. indexOf, lastIndexOf ==> number
-			console.log(val.indexOf("admin")+"/"+ typeof val.includes("damin"));
-			// 5. toUpperCase(), toLowerCase()   타이틀을 대,소문자로 변경 , trim() ==> String  trimdms 좌우 공백 제거
-			document.title ="["+ val.trim().toUpperCase() + "]";
-			// 6. replace() ==> string
-			console.log(val.replace("<", "&lt;"));			// <문자를 &lt 로 변경해서 나옴
-			// 7. substr(), substring, slice ==> string
-							// lenhth 혹은, 끝 index 설정항낳면 마지막까지 다 처리함
-			console.log(val.substr(3, 2));			// from Index, length Index
-			console.log(val.substring(3, 5));			// from Index, end Index
-			console.log(val.slice(3, 5));		// from Index, end Index
-			console.log(val.substring(3, 5));			// from Index, end Index
-			
-			var ar = "saan;mockig;te0506".split(";");
-			console.log(ar.length);
-			for(var i=0; i<ar.length; i++){
-				console.log(ar[i]);
+		var ar = [ false, false, false, false ];
+		var vaild = function() {
+			console.log(ar);
+			if (ar.includes(false)) {
+				document.getElementById("sbt").disabled = false;
+			} else {
+				document.getElementById("sbt").disabled = true;
+			}
+		}
+
+		//====
+
+		document.getElementById("id").onchange = function(a) {
+			var v1 = a.value;
+			if (/^[A-Za-z]\w{3,11}$/.test(v1)) {
+				var req = new XMLHttpRequest();
+				req.open("get", "02ajax.jsp", true);
+				req.onreadystatechange = function() {
+					if (this.readyState == 4) {
+						var resp = this.responseText.trim();
+						if (resp == "true") {
+							document.getElementsByTagName("span")[0].innerHTML = "사용중인 ID입니다";
+							document.getElementsByTagName("span")[0].style.color = "red";
+						} else {
+							document.getElementsByTagName("span")[0].innerHTML = "멋진 ID에요";
+							document.getElementsByTagName("span")[0].style.color = "green";
+						}
+					}
+				}
+				req.send();
+			} else {
+				document.getElementsByTagName("span")[0].innerHTML = "아이디는 영문숫자혼용 4~12자로 설정바랍니다.";
+				document.getElementsByTagName("span")[0].style.color ="red";
 			}
 			
+		};
+
+		var ckNick = function(b) {
+			var v2 = b.value;
+			var check = /^[가-힇]{2,7}$/.test(v2);
+			ar[1] = check;
+			if (check) {
+				document.getElementsByTagName("span")[1].innerHTML = "사용가능합니다";
+				document.getElementsByTagName("span")[1].style.color = "green";
+
+			} else {
+				document.getElementsByTagName("span")[1].innerHTML = "한글로 구성된 3~8자";
+				document.getElementsByTagName("span")[1].style.color = "red";
+			}
+			vaild();
+		}
+
+		var ckPass = function(c) {
+			var v3 = c.value;
+			var check = /^\w{3,11}$/.test(v3);
+			ar[2] = check;
+			if (check) {
+				document.getElementsByTagName("span")[2].innerHTML = "사용가능";
+				document.getElementsByTagName("span")[2].style.color = "green";
+			} else {
+				document.getElementsByTagName("span")[2].innerHTML = "유효하지 않음.";
+				document.getElementsByTagName("span")[2].style.color = "red";
+			}
+			vaild();
+		}
+
+		var ckRepass = function(d) {
+			var v4 = d.value;
+			var c = document.getElementsByTagName("input")[2].value;
+			if (v4 == c) {
+				document.getElementsByTagName("span")[3].innerHTML = "일치합니다";
+				document.getElementsByTagName("span")[3].style.color = "green";
+			} else {
+				document.getElementsByTagName("span")[3].innerHTML = "유효하지 않음.";
+				document.getElementsByTagName("span")[3].style.color = "red";
+			}
+			vaild();
+		}
+
+		var ajax = function(a) {
+			var c = document.getElementById("id").value;
+			var req = new XMLHttpRequest();
+			req.open("get", "03ajax.jsp", true);
+			console.log("??" + c);
+			req.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					console.log("resp : " + this.responseText);
+					if (this.responseText == "true") {
+						window.alert("이미 사용 중인 아이디 입니다.");
+						ar[4] = false;
+					} else {
+						window.alert("사용가능한 아이디입니다.");
+						ar[4] = true;
+					}
+				}
+			}
+			req.send();
+			vaild();
 		}
 	</script>
 </body>
