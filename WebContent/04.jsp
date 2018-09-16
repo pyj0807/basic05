@@ -39,6 +39,7 @@
 	var ajax = function() {
 		var req = new XMLHttpRequest();
 		req.open("get","04ajax.jsp",true);
+		
 		req.onreadystatechange=function(){
 			if(this.readyState==4) {
 				var resp = this.responseXML;
@@ -56,7 +57,24 @@
 		};
 		req.send();
 	};
+	var checktrigger = function(val) {
+		var input = document.getElementsByTagName("input");
+		for(var i=0; i<input.length; i++) {
+			if(input[i].value == val){
+				input[i].checked = true;
+			}
+		}
+	}
 	
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

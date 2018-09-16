@@ -22,17 +22,32 @@
 			var req = new XMLHttpRequest();
 			req.open("get", "http://openapi.seoul.go.kr:8088/sample/xml/octastatapi419/1/5/", true);
 			
-			var html = "<li>종로구 / 남자 79322명 , 여자 82600명</li>";
-			
-			document.getElementById("rst").innerHTML = html;
+			//var html = "<li>종로구 / 남자 79322명 , 여자 82600명</li>";
+			//document.getElementById("rst").innerHTML = html;
 			
 			req.onreadystatechange = function(){
 				if(this.readyState==4){
 					var resp = this.responseXML;
-					var row = resp.getElementsByTagName("row")
+					/* 
+					var row = resp.getElementsByTagName("row")[1].innerHTML;
+					console.log("row = "+ row); 
+					 */
+					var row = resp.getElementsByTagName("row");
+					for(var i=0; i<row.length; i++) {
+						var d = row[i].getElementsByTagName("JACHIGU");
+						for(var ii=0; ii<d.length; ii++) {
+							console.log(d[ii].innerHTML);
+						}
+						var d = row[i].getElementsByTagName("SEDAE");
+						for(var iii=0; iii.d1.length; iii++){
+							console.log(d[iii].innerHTML);
+						}
+						console.log("─────────")
+					}
+					
 				}
 			}
-			
+			req.send();
 		};
 	
 	</script>
