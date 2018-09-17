@@ -50,6 +50,7 @@
 					var d = datalist[i].getElementsByTagName("data");
 					for(var ii=0; ii<d.length; ii++) {
 						console.log(d[ii].innerHTML);
+						checktrigger(d[ii].innerHTML);
 					}
 					console.log("─────────")
 				}

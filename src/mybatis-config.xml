@@ -15,5 +15,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mappers/join.xml" />
+		<mapper resource="mappers/account.xml"/>
 	</mappers>
 </configuration>

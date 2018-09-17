@@ -18,6 +18,7 @@
 	
 	</ul>
 	<script>
+	/* 
 		var scrap = function(){
 			var req = new XMLHttpRequest();
 			req.open("get", "http://openapi.seoul.go.kr:8088/sample/xml/octastatapi419/1/5/", true);
@@ -28,19 +29,19 @@
 			req.onreadystatechange = function(){
 				if(this.readyState==4){
 					var resp = this.responseXML;
-					/* 
+					
 					var row = resp.getElementsByTagName("row")[1].innerHTML;
 					console.log("row = "+ row); 
-					 */
+					  
 					var row = resp.getElementsByTagName("row");
-					for(var i=0; i<row.length; i++) {
+					for(var i=1; i<row.length; i++) {
 						var d = row[i].getElementsByTagName("JACHIGU");
 						for(var ii=0; ii<d.length; ii++) {
 							console.log(d[ii].innerHTML);
 						}
-						var d = row[i].getElementsByTagName("SEDAE");
-						for(var iii=0; iii.d1.length; iii++){
-							console.log(d[iii].innerHTML);
+						var d1 = row[i].getElementsByTagName("NAMJA_1");
+						for(var ii1=1; ii1<d1.length; ii1++) {
+							console.log(d[ii1].innerHTML);
 						}
 						console.log("─────────")
 					}
@@ -49,7 +50,26 @@
 			}
 			req.send();
 		};
-	
+	 */
+	 var scrap = function(){
+			var req = new XMLHttpRequest();
+			req.open("get", "http://openapi.seoul.go.kr:8088/sample/xml/octastatapi419/1/5/",true);
+			req.onreadystatechange=function(){
+				if(this.readyState==4) {
+					var resp = this.responseXML;
+					var rows = resp.getElementsByTagName("row");
+					var html = "";
+					for(var i=1; i<rows.length ; i++) {
+						var  jachigu = rows[i].getElementsByTagName("JACHIGU")[0].innerHTML;
+						var  namja = parseInt(rows[i].getElementsByTagName("NAMJA_1")[0].innerHTML);
+						var  yeoja = parseInt(rows[i].getElementsByTagName("YEOJA_1")[0].innerHTML);
+						html += "<li>"+jachigu +" : 男  " + namja.toLocaleString() +"/ 女 " + yeoja.toLocaleString()+"</li>";			
+					}
+					document.getElementById("rst").innerHTML = html;		
+				}
+			};
+			req.send();
+		};
 	</script>
 </body>
 </html>
