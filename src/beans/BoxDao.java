@@ -16,11 +16,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class boxDao {
+public class BoxDao {
 	
 	SqlSessionFactory factory;
 	
-	public boxDao() throws IOException {
+	public BoxDao() throws IOException {
 		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
 		factory = builder.build(is);
@@ -29,7 +29,7 @@ public class boxDao {
 	public List<Map> findStartWith(String w) {
 		SqlSession sql =factory.openSession();	
 		try {
-			List<Map> p = sql.selectList("account.findStartWith",  w+"%");
+			List<Map> p = sql.selectList("account.findStartWith",w+"%");
 			return p;
 		}catch(Exception e) {
 			e.printStackTrace();

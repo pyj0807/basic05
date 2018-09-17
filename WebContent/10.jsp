@@ -26,9 +26,9 @@
 	<form action="" autocomplete="off">
 		<p>
 			<b>받을사람</b>
-			<input type="text" list="some" onkeyup="check(this.value)" style="padding: 3px"/>
+			<input type="text" list="some" onkeyup="check(this.value);" style="padding: 3px"/>
 			<datalist id="some">
-				<option value="mocking">윤 형 호 (남)</option>
+				
 			</datalist>
 		</p>
 		<p>
@@ -36,54 +36,25 @@
 		</p>
 	</form>
 	<script>
-		var check = function(){
+		var check = function(val){
 			
 			var req = new XMLHttpRequest();
-			var html;
 			req.open("get", "10ajax.jsp?id=" + val, true);
 			req.onreadystatechange= function() {
-				if(this.readtState==4){
+				if(this.readyState == 4){
 					var obj = JSON.parse(this.responseText);
-					for(var i =0; i < obj.length; i++){
-						html += "<option value=" + obj[i].ID + ">"
-						+ obj[i].NAME + "(" + obj[i].GENDER
-						+ ")</option>";
+					var html="";
+					for(var i = 0; i < obj.length; i++){
+						
+						html += "<option value=" + obj[i].ID + ">"+ obj[i].NAME + "(" + obj[i].GENDER+ ")</option>";
 					}
+					console.log(html);
 					document.getElementById("some").innerHTML = html;
 				}
-			}
+			};
 			req.send();
-		}
-		/*
-				var ajax = function(val) {
-
-			var req = new XMLHttpRequest();
-			var html;
-
-			req.open("get", "10ajax.jsp?id=" + val, true);
-
-			req.onreadystatechange = function() { //바뀔때 찍힘
-
-				if (this.readyState == 4) {
-
-					var str = JSON.parse(this.responseText);
-
-					for (var i = 0; i < str.length; i++) {
-						html += "<option value=" + str[i].ID + ">"
-								+ str[i].NAME + "(" + str[i].GENDER
-								+ ")</option>";
-					}
-
-					document.getElementById("some").innerHTML = html
-				}
-			}
-
-			req.send();
-			console.log(req.readyState); // 2:요청지도착 / 3:응답수신시작 / 4:응답수신완료
 		};
 
-		*/
-		
 	</script>
 </body>
 </html>
