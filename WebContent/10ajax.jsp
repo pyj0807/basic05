@@ -1,6 +1,6 @@
+<%@page import="beans.BoxDao"%>
 <%@page import="com.google.gson.*"%>
 <%@page import="java.util.List"%>
-<%@page import="beans.BoxDao"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8"

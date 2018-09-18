@@ -24,6 +24,7 @@ public class BoxDao {
 		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
 		factory = builder.build(is);
+		/*new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-confing.xml"));*/
 	}
 	
 	public List<Map> findStartWith(String w) {

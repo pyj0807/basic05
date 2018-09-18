@@ -6,12 +6,12 @@
 	전송하는
 
  --%>
+<%@page import="beans.MockDao"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="beans.*" %>   
 
 <%
 	MockDao mdao = new MockDao();
